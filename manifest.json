@@ -1,0 +1,9 @@
+{
+  "name": "Diverge & Converge",
+  "id": "diverge-and-converge",
+  "api": "1.0.0",
+  "main": "./controller.js",
+  "ui": "./index.html",
+  "editorType": ["figjam", "figma"],
+  "permissions": []
+}
