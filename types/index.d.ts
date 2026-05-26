@@ -38,6 +38,22 @@ export interface Concept {
     nodeId: string;
 }
 /**
+ * A single criticality rating read from the board's "Scoring features" section.
+ * Populated by parseScoringFeatures() in controller.ts after participants move
+ * stickies into the Criticality area of each Feature N slot.
+ * criticality is null when no sticky has been placed in the Criticality section.
+ */
+export interface ScoringFeatureEntry {
+    /** The numeric index from "Participant N" naming */
+    participantIndex: number;
+    /** The numeric index from "Feature N" naming */
+    featureIndex: number;
+    /** Text of the sticky placed in the Criticality section, or null if empty.
+     *  Expected values: "Must have" | "Should have" | "Could have" | "Won't do"
+     */
+    criticality: string | null;
+}
+/**
  * The complete parsed board data structure.
  */
 export interface ParsedBoard {
@@ -49,6 +65,8 @@ export interface ParsedBoard {
     totalFeatures: number;
     /** ISO timestamp of when the board was last parsed */
     lastParsed: string;
+    /** Criticality ratings parsed from the "Scoring features" board section */
+    scoringFeatures: ScoringFeatureEntry[];
 }
 /**
  * Message types sent from UI to plugin controller.
